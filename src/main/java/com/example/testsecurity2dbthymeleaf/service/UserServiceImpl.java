@@ -1,5 +1,8 @@
 package com.example.testsecurity2dbthymeleaf.service;
 
+import com.example.testsecurity2dbthymeleaf.dto.UserDto;
+import com.example.testsecurity2dbthymeleaf.entity.Role;
+import com.example.testsecurity2dbthymeleaf.entity.User;
 import com.example.testsecurity2dbthymeleaf.repository.RoleRepository;
 import com.example.testsecurity2dbthymeleaf.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -39,4 +44,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserByEmail(String email) { return userRepository.findByEmail(email); }
+
+    @Override
+    public List<UserDto> findAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map((user) ->mapToUserDto(user))
+                .collect(Collectors.toList());
+    }
+
+    private UserDto mapToUserDto(User user){
+        UserDto userDto = new UserDto();
+        String[] str = user.getName().split("");
+        userDto.setFirstName(str[0]);
+        userDto.setLastName(str[1]);
+        userDto.setEmail(user.getEmail());
+        return userDto;
+    }
+
+    private Role chekRoleExist(){
+        Role role = new Role();
+        return roleRepository.save(role);
+    }
 }
