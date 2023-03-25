@@ -8,7 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import static java.util.stream.Collectors.toList;
+import java.util.stream.Collectors;
+
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -26,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                     , user.getPassword(),
                     user.getRoles().stream()
                             .map((role) -> new SimpleGrantedAuthority(role.getName()))
-                            .collect(Colletors,toList()));
+                            .collect(Collectors.toList()));
         }else{
             throw new UsernameNotFoundException("Invalid email or password");
         }

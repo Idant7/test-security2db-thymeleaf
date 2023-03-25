@@ -31,13 +31,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveUser(UserDto userDto) {
         User user = new User();
-        user.setName(userDto.getFirsName() + " " + userDto.getLastName());
+        user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         // encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         Role role = roleRepository.findByName("ROLE_ADMIN");
         if(role == null) {
-            role = chekRoleExist();
+            role = checkRoleExist();
         }
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
@@ -63,8 +63,9 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
-    private Role chekRoleExist(){
+    private Role checkRoleExist(){
         Role role = new Role();
+        role.setName("ROLE_ADMIN");
         return roleRepository.save(role);
     }
 }
