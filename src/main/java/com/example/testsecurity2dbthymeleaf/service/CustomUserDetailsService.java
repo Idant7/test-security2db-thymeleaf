@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
-
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -28,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                     user.getRoles().stream()
                             .map((role) -> new SimpleGrantedAuthority(role.getName()))
                             .collect(Collectors.toList()));
-        }else{
+        }else {
             throw new UsernameNotFoundException("Invalid email or password");
         }
     }

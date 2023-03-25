@@ -25,7 +25,7 @@ public class SecurityController {
     @GetMapping("/login")
     public String login() { return "login"; }
 
-    @GetMapping("/reqister")
+    @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         UserDto user = new UserDto();
         model.addAttribute("user", user);
@@ -49,7 +49,7 @@ public class SecurityController {
         }
 
         userService.saveUser(userDto);
-        return "redirect:/register?succes";
+        return "redirect:/register?success";
     }
 
     @GetMapping("/users")

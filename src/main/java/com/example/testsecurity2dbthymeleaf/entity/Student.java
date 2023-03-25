@@ -1,5 +1,6 @@
 package com.example.testsecurity2dbthymeleaf.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "STUDENTS")
 public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -32,4 +34,3 @@ public class Student {
     private int age ;
 
 }
-

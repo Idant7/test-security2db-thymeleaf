@@ -14,7 +14,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig {
 
     @Bean
-    public static PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
+    public static PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     //configure SecurityFilterChin
     @Bean

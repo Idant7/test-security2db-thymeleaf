@@ -1,5 +1,6 @@
 package com.example.testsecurity2dbthymeleaf.entity;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
